@@ -12,6 +12,13 @@ img{
 	margin-bottom: 10px;
 }
 
+.favorites img{
+	vertical-align: middle; 
+	max-width: 75px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 #test{
 	display:none;
 	width:300px;
@@ -25,6 +32,7 @@ img{
 
 .title{
 	text-align: center;
+	display: block;
 }
 
 .favorites{
@@ -33,6 +41,7 @@ img{
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	display: block;
 }
 
 input{

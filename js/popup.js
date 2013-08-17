@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var favorites = new Favorites();
   favorites.getFavorites(function(result){
     console.log(result);
+    for (var i=0;i<result.length;i++){
+      $('.favorites').append('<img src='+result[i].image+'>');
+    }
   });
   $('#searchTerm').keyup(function(e){
     if(e.keyCode == 13)
