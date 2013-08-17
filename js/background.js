@@ -30,10 +30,11 @@ function Favorites(){
     that = this;
 
     that.alreadyFavorited_ = function (url, favorites) {
-        if (favorites) {};
-        for(var i = 0, len = favorites.length; i < len; i++) {
-            if(favorites[i].image === url) {
-                return i;
+        if (favorites) {
+            for(var i = 0, len = favorites.length; i < len; i++) {
+                if(favorites[i].image === url) {
+                    return i;
+                }
             }
         }
         return false;
