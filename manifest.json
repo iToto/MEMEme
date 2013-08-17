@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "MEMEme",
+  "description": "A google extension that searches for a meme and puts it in your clipboard",
+  "version": "1.0.1",
+
+  "permissions": [
+    "http://*.tumblr.com/"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}
