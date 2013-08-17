@@ -27,18 +27,17 @@
  */
 function Favorites(){
 
-    saveFavorite: function(url){
-        var favorite  = {"image":url};
+    this.saveFavorite = function(url){
+        console.log('saving');
+        var favorite  = {"image": url};
         var favorites = this.getFavorites();
         favorites.push(favorite);
-        chrome.storage.StorageArea.set('favorites',favorites);
-    },
+        chrome.storage.sync.set("favorites", favorites);
+    };
 
-
-
-    getFavorites: function(){
-        return chrome.storage.StorageArea.get('favorites', function(object items) {
+    this.getFavorites = function(){
+        return chrome.storage.sync.get("favorites", function(items) {
             return items;
         });
-    },
+    };
 }
