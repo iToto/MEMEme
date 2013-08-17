@@ -14,7 +14,7 @@ var imageGenerator = {
       return 'http://api.tumblr.com/v2/tagged?' +
       'tag=' + encodeURIComponent(searchTerm) + '&' +
       'api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4&' +
-      'limit=1'
+      'limit=20'
       },
 
 
@@ -44,54 +44,18 @@ var imageGenerator = {
   loadTumblrImages_: function(result) {
     // var resp = JSON.parse(result.responseText);
     var results = result.response;
-    for (var i = 0; i < results.length; i++){
-        console.dir(results[i]);
-        if (results[i].photos){
-          var imgLink = results[i].photos[0].alt_sizes[0].url;
-        }
-        if (imgLink){
-            var img = document.createElement('img');
-            img.src = imgLink;
-            img.setAttribute('alt', i);
-            $('#test').append(img);
-        }
+    var rand = results[Math.floor(Math.random() * results.length)];
+    if (rand.photos){
+      var imgLink = rand.photos[0].alt_sizes[0].url;
     }
-    $('#test').slideDown('fast');
-  },
-
-  /**
-   * Handle the 'onload' event of our kitten XHR request, generated in
-   * 'requestKittens', by generating 'img' elements, and stuffing them into
-   * the document for display.
-   *
-   * @param {ProgressEvent} e The XHR ProgressEvent.
-   * @private
-   */
-  showPhotos_: function (e) {
-    var images = e.target.responseXML.querySelectorAll('photo');
-    for (var i = 0; i < images.length; i++) {
+    if (imgLink){
       var img = document.createElement('img');
-      img.src = this.constructURL_(images[i]);
-      img.setAttribute('alt', images[i].getAttribute('title'));
-      document.body.appendChild(img);
+      img.src = imgLink;
+      $('#test').append(img);
+      $('#test').slideDown('fast');
     }
-  },
-
-  /**
-   * Given a photo, construct a URL using the method outlined at
-   * http://www.flickr.com/services/api/misc.urlKittenl
-   *
-   * @param {DOMElement} A kitten.
-   * @return {string} The kitten's URL.
-   * @private
-   */
-  constructURL_: function (photo) {
-    return "http://farm" + photo.getAttribute("farm") +
-        ".static.flickr.com/" + photo.getAttribute("server") +
-        "/" + photo.getAttribute("id") +
-        "_" + photo.getAttribute("secret") +
-        "_s.jpg";
   }
+
 };
 
 // Run our kitten generation script as soon as the document's DOM is ready.

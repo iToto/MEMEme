@@ -1,6 +1,42 @@
-body { min-width: 357px; overflow-x: hidden; }
-img { margin: 5px; border: 2px solid black; vertical-align: middle; max-width: 300px; }
+body{ 
+	min-width: 357px; 
+	overflow-x: hidden;
+	font-family: Tahoma;
+}
+
+img{
+	padding: 10px;
+	vertical-align: middle; 
+	max-width: 278px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
 #test{
 	display:none;
+	width:300px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.topTitle{
+	text-align: center;
+}
+
+.title{
+	text-align: center;
+}
+
+.favorites{
+	border: 1px solid #518CFF;
+	padding: 10px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input{
+	width: 238px;
+	border-color: #518CFF;
+	outline: none;
 }
