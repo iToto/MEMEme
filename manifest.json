@@ -5,16 +5,24 @@
   "description": "A google extension that searches for a meme and puts it in your clipboard",
   "version": "1.0.1",
 
-  "background": {
-    "scripts" : "backround.js"
-  },
-
   "permissions": [
     "http://*.tumblr.com/",
-    "storage"
+    "storage",
+    "contextMenus"
+
   ],
+  "icons": {
+    "16": "images/icon-bitty.png"
+  },
   "browser_action": {
     "default_icon": "images/icon.png",
     "default_popup": "popup.html"
+  },
+  "background": {
+    "persistent" : false,
+    "scripts" : [
+      "js/rightclick.js",
+      "js/background.js"
+    ]
   }
 }
