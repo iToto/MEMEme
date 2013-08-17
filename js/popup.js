@@ -48,43 +48,37 @@ var kittenGenerator = {
    *
    * @public
    */
-  requestTumblrTag: function() {
+  requestTumblrTag: function(searchTerm) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", this.searchTagOnTumblr_, true);
-    var t = this;
-    xhr.onreadystatechange = (function(t) {
+    xhr.open("GET", this.searchTagOnTumblr_(searchTerm), true);
+    var stupidThis = this;
+    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4) {
         // JSON.parse does not evaluate the attacker's scripts.
         var resp = JSON.parse(xhr.responseText);
-        t.loadTumblrImages_(resp);
+        stupidThis.loadTumblrImages_(resp);
       }
-    })(t)
+    }
     xhr.send();
   },
 
-/**
- * Handle the 'onload' event of the Tumblr search request. This should parse
- * the JSON return object and load the image in the view
- */
-loadTumblrImages_: function(result) {
-  // var resp = JSON.parse(result.responseText);
-  console.dir(result);
-  if (result.readyState == 4) {
-    // JSON.parse does not evaluate the attacker's scripts.
-  }
-},
-
   /**
-   * Sends an XHR GET request to grab photos of lots and lots of kittens. The
-   * XHR's 'onload' event is hooks up to the 'showPhotos_' method.
-   *
-   * @public
+   * Handle the 'onload' event of the Tumblr search request. This should parse
+   * the JSON return object and load the image in the view
    */
-  requestKittens: function() {
-    var req = new XMLHttpRequest();
-    req.open("GET", this.searchOnFlickr_, true);
-    req.onload = this.showPhotos_.bind(this);
-    req.send(null);
+  loadTumblrImages_: function(result) {
+    // var resp = JSON.parse(result.responseText);
+    var results = result.response;
+    for (var i = 0; i < results.length; i++){
+        console.dir(results[i]);
+        var imgLink = results[i].image_permalink;
+        if (imgLink){
+            var img = document.createElement('img');
+            img.src = imgLink;
+            $('#test').append(img);
+        }
+    }
+    $('#test').slideDown('fast');
   },
 
   /**
@@ -124,6 +118,11 @@ loadTumblrImages_: function(result) {
 
 // Run our kitten generation script as soon as the document's DOM is ready.
 document.addEventListener('DOMContentLoaded', function () {
-  // kittenGenerator.requestKittens();
-  kittenGenerator.requestTumblrTag();
+  $('#searchTerm').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      $('#test').empty();
+      kittenGenerator.requestTumblrTag($('#searchTerm').val());
+    }
+  });
 });
