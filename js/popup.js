@@ -71,7 +71,9 @@ var kittenGenerator = {
     var results = result.response;
     for (var i = 0; i < results.length; i++){
         console.dir(results[i]);
-        var imgLink = results[i].photos[0].alt_sizes[0].url;
+        if (results[i].photos){
+          var imgLink = results[i].photos[0].alt_sizes[0].url;
+        }
         if (imgLink){
             var img = document.createElement('img');
             img.src = imgLink;
