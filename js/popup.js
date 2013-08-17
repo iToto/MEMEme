@@ -44,8 +44,13 @@ var imageGenerator = {
       $('#test').append(img);
       $('#test').slideDown('fast');
     }
-  }
+  },
 
+  clickHandler: function(url){
+      console.log('here');
+      var favorites = new Favorites();
+      favorites.deleteFavorite(url);
+  }
 };
 
 // Run our kitten generation script as soon as the document's DOM is ready.
@@ -54,9 +59,18 @@ document.addEventListener('DOMContentLoaded', function () {
   favorites.getFavorites(function(result){
     console.log(result);
     for (var i=0;i<result.length;i++){
-      $('.favorites').append('<img src='+result[i].image+'>');
+      $('.favorites').append('<div class="favoriteImgHolder"><button id="xBtn">x</button><img src='+result[i].image+'><div>');
     }
   });
+
+
+  $('body').delegate('#xBtn', 'click', function(){
+       var favorites = new Favorites();
+       console.log($(this).parent().find('img'));
+       favorites.deleteFavorite($(this).parent().find('img').attr('src'));
+  });
+  //document.querySelector('#xBtn').addEventListener('click', imageGenerator.clickHandler($(this).closest('img').attr('src')));
+  
   $('#searchTerm').keyup(function(e){
     if(e.keyCode == 13)
     {
