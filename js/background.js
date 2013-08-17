@@ -37,14 +37,14 @@ function Favorites(){
                 }
             }
         }
-        return false;
+        return -1;
     };
 
     that.saveFavorite = function(url){
         var favorite  = {"image": url};
         that.getFavorites(function(results){
             results = results || [];
-            if (!that.alreadyFavorited_(url, results)) {
+            if (that.alreadyFavorited_(url, results) < 0) {
                 results.push(favorite);
                 chrome.storage.sync.set({"favorites" : results});
             }
@@ -60,8 +60,8 @@ function Favorites(){
     that.deleteFavorite = function(url){
         that.getFavorites(function(results){
             results = results || [];
-            index = that.alreadyFavorited_(url, results);            
-            if (index) {
+            index = that.alreadyFavorited_(url, results);
+            if (index >= 0) {
                 results.splice(index,1);
                 chrome.storage.sync.set({"favorites" : results});
                 return true;
