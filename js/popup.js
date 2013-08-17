@@ -3,21 +3,13 @@
 // found in the LICENSE file.
 
 /**
- * Global variable containing the query we'd like to pass to Flickr. In this
- * case, kittens!
  *
  * @type {string}
  */
-var QUERY  = 'kittens';
 // var tumblr = require('tumblr.js');
 
-var kittenGenerator = {
-  /**
-   * Tumblr URL that will give us lots and lots of whatever we're looking for.
-   *
-   * @type {string}
-   * @private
-   */
+var imageGenerator = {
+
   searchTagOnTumblr_: function(searchTerm){
       return 'http://api.tumblr.com/v2/tagged?' +
       'tag=' + encodeURIComponent(searchTerm) + '&' +
@@ -76,11 +68,11 @@ var kittenGenerator = {
    * @private
    */
   showPhotos_: function (e) {
-    var kittens = e.target.responseXML.querySelectorAll('photo');
-    for (var i = 0; i < kittens.length; i++) {
+    var images = e.target.responseXML.querySelectorAll('photo');
+    for (var i = 0; i < images.length; i++) {
       var img = document.createElement('img');
-      img.src = this.constructKittenURL_(kittens[i]);
-      img.setAttribute('alt', kittens[i].getAttribute('title'));
+      img.src = this.constructURL_(images[i]);
+      img.setAttribute('alt', images[i].getAttribute('title'));
       document.body.appendChild(img);
     }
   },
@@ -93,7 +85,7 @@ var kittenGenerator = {
    * @return {string} The kitten's URL.
    * @private
    */
-  constructKittenURL_: function (photo) {
+  constructURL_: function (photo) {
     return "http://farm" + photo.getAttribute("farm") +
         ".static.flickr.com/" + photo.getAttribute("server") +
         "/" + photo.getAttribute("id") +
@@ -108,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if(e.keyCode == 13)
     {
       $('#test').empty();
-      kittenGenerator.requestTumblrTag($('#searchTerm').val());
+      imageGenerator.requestTumblrTag($('#searchTerm').val());
     }
   });
 });

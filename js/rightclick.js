@@ -1,6 +1,7 @@
 (function(){
   /*global console */
   /*global chrome */
+  /*global Favorites */
   "use strict";
 
   function onClickHandler(info, tab) {
