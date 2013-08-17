@@ -28,7 +28,7 @@
 function Favorites(){
 
     that = this;
-    
+
     that.alreadyFavorited_ = function (url, favorites) {
         for(var i = 0, len = favorites.length; i < len; i++) {
             if(favorites[i].image === url) {
@@ -44,7 +44,7 @@ function Favorites(){
             results = results || [];
             if (!that.alreadyFavorited_(url, results)) {
                 results.push(favorite);
-            chrome.storage.sync.set({"favorites" : results});
+                chrome.storage.sync.set({"favorites" : results});
             }
         });
     };
