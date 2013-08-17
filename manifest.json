@@ -9,7 +9,7 @@
     "http://*.tumblr.com/"
   ],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "images/icon.png",
     "default_popup": "popup.html"
   }
 }
