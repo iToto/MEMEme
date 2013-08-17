@@ -6,7 +6,11 @@
   "version": "1.0.1",
 
   "permissions": [
-    "contextMenus"
+    "http://*.tumblr.com/",
+    "storage",
+    "contextMenus",
+    "clipboardWrite"
+
   ],
   "icons": {
     "16": "images/icon-bitty.png"
@@ -18,7 +22,8 @@
   "background": {
     "persistent" : false,
     "scripts" : [
-      "js/rightclick.js"
+      "js/rightclick.js",
+      "js/background.js"
     ]
   }
 }

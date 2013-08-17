@@ -1,6 +1,48 @@
-body { min-width: 357px; overflow-x: hidden; }
-img { margin: 5px; border: 2px solid black; vertical-align: middle; width: 75px; height: 75px; }
+body { font-size: 10px;  font-family: 'Lucida Grande', sans-serif;  min-width: 357px; overflow-x: hidden; }
+input { font-size: 1.4em; width: 250px; height: 25px; background: white; outline: none; width: 100%; margin:auto; }
+h2 { text-align: center; font-size: 1.6em; }
+
+img{ 
+	padding: 10px;
+	vertical-align: middle;
+	max-width: 278px;
+	margin: 10px 0;
+}
+
+.favorites{
+	border: 1px solid #e9e9e9;
+	padding: 10px;
+	text-align: center;
+	margin: 10px 0px;
+}
+
+.favoriteImgHolder{
+	width: 160px;
+	display: inline-block;
+	margin: 10px;
+	border-top:1px solid pink;
+	border-bottom:1px solid pink;
+}
+
+.favoriteImgHolder button{
+	float:right;
+	margin-right: 26px;
+	margin-top: 10px;
+}
+
+.favorites img{
+	margin: 0px 0px 10px;
+	padding: 0px;
+	max-width: 100px;
+}
 
 #test{
 	display:none;
+	width:300px;
+	text-align: center;
+	margin: 0 auto;
 }
+
+
+
+
