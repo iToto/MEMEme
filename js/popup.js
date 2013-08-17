@@ -96,6 +96,10 @@ var imageGenerator = {
 
 // Run our kitten generation script as soon as the document's DOM is ready.
 document.addEventListener('DOMContentLoaded', function () {
+  var favorites = new Favorites();
+  favorites.getFavorites(function(result){
+    console.log(result);
+  });
   $('#searchTerm').keyup(function(e){
     if(e.keyCode == 13)
     {

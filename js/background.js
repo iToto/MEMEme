@@ -27,16 +27,28 @@
  */
 function Favorites(){
 
-    this.saveFavorite = function(url){
-        var favorite  = {"image": url};
-        var favorites = this.getFavorites() || [];
-        favorites.push(favorite);
-        chrome.storage.sync.set({"favorites" : favorites});
+    this.alreadyFavorited_ = function ( url, favorites ) {
+        for(var i = 0, len = favorites.length; i < len; i++) {
+            if( favorites[ i ].key === url )
+                return true;
+        }
+        return false;
     };
 
-    this.getFavorites = function(){
-        return chrome.storage.sync.get("favorites", function(items) {
-            return items;
+    this.saveFavorite = function(url){
+        var favorite  = {"image": url};
+        this.getFavorites(function(results){
+            results = results || [];
+            if (!alreadyFavorited_(url, results)) {
+                results.push(favorite);
+            chrome.storage.sync.set({"favorites" : results});
+            }
+        });
+    };
+
+    this.getFavorites = function(fn){
+        chrome.storage.sync.get("favorites", function(items) {
+            fn(items.favorites);
         });
     };
 }
