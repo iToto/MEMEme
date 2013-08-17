@@ -58,7 +58,7 @@ function Favorites(){
     that.deleteFavorite = function(url){
         that.getFavorites(function(results){
             results = results || [];
-            index = that.alreadyFavorited_(url, results)
+            index = that.alreadyFavorited_(url, results);
             if (index) {
                 results.splice(index,1);
                 chrome.storage.sync.set({"favorites" : results});
