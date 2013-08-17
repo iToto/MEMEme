@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
   favorites.getFavorites(function(result){
     if (result) {
       for (var i=0;i<result.length;i++){
-        $('.favorites').append('<div class="favoriteImgHolder"><button class="xBtn" id="xBtn-'+i+'">x</button><img src='+result[i].image+'></div>');
+        $('.favorites').append('<div class="favoriteImgHolder"><button class="xBtn" id="xBtn-'+i+'">unfavorite</button><img src='+result[i].image+'></div>');
       }
     }
   });
