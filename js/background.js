@@ -30,9 +30,11 @@ function Favorites(){
     that = this;
 
     that.alreadyFavorited_ = function (url, favorites) {
-        for(var i = 0, len = favorites.length; i < len; i++) {
-            if(favorites[i].image === url) {
-                return i;
+        if (favorites) {
+            for(var i = 0, len = favorites.length; i < len; i++) {
+                if(favorites[i].image === url) {
+                    return i;
+                }
             }
         }
         return false;
@@ -62,7 +64,9 @@ function Favorites(){
             if (index) {
                 results.splice(index,1);
                 chrome.storage.sync.set({"favorites" : results});
+                return true;
             }
+            return false;
         });
     };
 }

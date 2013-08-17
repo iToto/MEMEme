@@ -57,9 +57,10 @@ var imageGenerator = {
 document.addEventListener('DOMContentLoaded', function () {
   var favorites = new Favorites();
   favorites.getFavorites(function(result){
-    console.log(result);
-    for (var i=0;i<result.length;i++){
-      $('.favorites').append('<div class="favoriteImgHolder"><button id="xBtn">x</button><img src='+result[i].image+'><div>');
+    if (result) {
+      for (var i=0;i<result.length;i++){
+        $('.favorites').append('<img src='+result[i].image+'>');
+      }
     }
   });
 
@@ -78,4 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
       imageGenerator.requestTumblrTag($('#searchTerm').val());
     }
   });
+
+  // Copy To Clipboard
+  $('img').on('click', function () {
+      alert("click");
+  });
+  
 });
