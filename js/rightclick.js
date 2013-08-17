@@ -1,11 +1,15 @@
 (function(){
   /*global console */
   /*global chrome */
+  /*global Favorites */
   "use strict";
 
-  function onClickHandler(info) {
+  function onClickHandler(info, tab) {
     if(info.mediaType == "image") {
-      console.log(info.srcUrl);
+      if(info.srcUrl) {
+        var favorites = new Favorites();
+        favorites.saveFavorite(info.srcUrl);
+      }
     }
   }
 
