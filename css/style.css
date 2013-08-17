@@ -2,7 +2,8 @@ body { font-size: 10px;  font-family: 'Lucida Grande', sans-serif;  min-width: 3
 input { font-size: 1.4em; width: 250px; height: 25px; background: white; outline: none; width: 100%; margin:auto; }
 h2 { text-align: center; font-size: 1.6em; }
 
-img{ padding: 10px;
+img{ 
+	padding: 10px;
 	vertical-align: middle;
 	max-width: 278px;
 	margin: 10px 0;
@@ -16,9 +17,17 @@ img{ padding: 10px;
 	display: block;
 }
 
+.favoriteImgHolder{
+	width: 100px;
+}
+
+.favoriteImgHolder a{
+	float:right;
+}
+
 .favorites img{
 	vertical-align: middle;
-	max-width: 75px;
+	max-width: 100px;
 	margin: 10px 0;
 }
 
