@@ -30,8 +30,9 @@ function Favorites(){
     this.saveFavorite = function(url){
         console.log('saving');
         var favorite  = {"image": url};
-        var favorites = this.getFavorites();
+        var favorites = this.getFavorites() || [];
         favorites.push(favorite);
+
         chrome.storage.sync.set("favorites", favorites);
     };
 
