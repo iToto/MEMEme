@@ -50,11 +50,6 @@ var imageGenerator = {
     document.execCommand('copy',false,url);
   }
 
-  clickHandler: function(url){
-      console.log('here');
-      var favorites = new Favorites();
-      favorites.deleteFavorite(url);
-  }
 };
 
 // Run our kitten generation script as soon as the document's DOM is ready.
@@ -78,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
           $('#xBtn-'+boxId).parent().fadeOut('slow', function(){$(this).remove()});
        //}
   });
-  
+
   $('#searchTerm').keyup(function(e){
     if(e.keyCode == 13)
     {
