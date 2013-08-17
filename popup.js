@@ -36,9 +36,11 @@ var kittenGenerator = {
       'sort=interestingness-desc&' +
       'per_page=20',
 
-  searchTagOnTumblr_: 'http://api.tumblr.com/v2/tagged?' +
-      'tag=gif&' +
-      'api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4',
+  searchTagOnTumblr_: function(searchTerm){
+      return 'http://api.tumblr.com/v2/tagged?' +
+      'tag=' + encodeURIComponent(searchTerm) + '&' +
+      'api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4'
+      },
 
 
   /**
@@ -49,13 +51,14 @@ var kittenGenerator = {
   requestTumblrTag: function() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", this.searchTagOnTumblr_, true);
-    xhr.onreadystatechange = function() {
+    var t = this;
+    xhr.onreadystatechange = (function(t) {
       if (xhr.readyState == 4) {
         // JSON.parse does not evaluate the attacker's scripts.
         var resp = JSON.parse(xhr.responseText);
-        this.loadTumblrImages_(resp);
+        t.loadTumblrImages_(resp);
       }
-    }
+    })(t)
     xhr.send();
   },
 
@@ -70,7 +73,6 @@ loadTumblrImages_: function(result) {
     // JSON.parse does not evaluate the attacker's scripts.
   }
 },
-
 
   /**
    * Sends an XHR GET request to grab photos of lots and lots of kittens. The
