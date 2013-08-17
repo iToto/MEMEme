@@ -9,7 +9,6 @@
       if(info.srcUrl) {
         var favorites = new Favorites();
         favorites.saveFavorite(info.srcUrl);
-        console.log(info.srcUrl);
       }
     }
   }
