@@ -10,7 +10,8 @@
   },
 
   "permissions": [
-    "http://*.tumblr.com/"
+    "http://*.tumblr.com/",
+    "storage"
   ],
   "browser_action": {
     "default_icon": "images/icon.png",
