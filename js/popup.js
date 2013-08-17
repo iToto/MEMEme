@@ -46,6 +46,10 @@ var imageGenerator = {
     }
   },
 
+  copySrcToClipboard: function(url) {
+    document.execCommand('copy',false,url);
+  }
+
   clickHandler: function(url){
       console.log('here');
       var favorites = new Favorites();
@@ -83,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Copy To Clipboard
-  $('img').on('click', function () {
-      alert("click");
+  // Copy To Clipboard Delegate
+  $( "body" ).delegate( "img", "click", function() {
+    imageGenerator.copySrcToClipboard($(this).attr('src'));
   });
 
 });
