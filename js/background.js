@@ -32,7 +32,7 @@ function Favorites(){
     that.alreadyFavorited_ = function (url, favorites) {
         for(var i = 0, len = favorites.length; i < len; i++) {
             if(favorites[i].image === url) {
-                return true;
+                return i;
             }
         }
         return false;
@@ -52,6 +52,17 @@ function Favorites(){
     that.getFavorites = function(fn){
         chrome.storage.sync.get("favorites", function(items) {
             fn(items.favorites);
+        });
+    };
+
+    that.deleteFavorite = function(url){
+        that.getFavorites(function(results){
+            results = results || [];
+            index = that.alreadyFavorited_(url, results)
+            if (index) {
+                results.splice(index,1);
+                chrome.storage.sync.set({"favorites" : results});
+            }
         });
     };
 }
